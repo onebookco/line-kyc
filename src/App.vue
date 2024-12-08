@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { liff } from '@line/liff'
 
 const viewName = ref('default')
 const route = useRoute()
+
+
+onMounted(() => {
+  liff.init({ liffId: "1653826193-MP282qGE" })
+  liff.ready.then(() => {
+    if (!liff.isLoggedIn()) {
+      liff.login()
+    }
+  })
+})
 </script>
 
 <template>

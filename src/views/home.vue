@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
+import OtpForm from '../components/otp-form.vue';
 
 const mobilePhone = ref<string>()
-const router = useRouter()
+const isRequestedOTP = ref<boolean>(false)
 
 const handleSubmit = (form: Event) => {
     form.preventDefault()
-    router.push({ name: 'userInfo' })
+    isRequestedOTP.value = true
 }
 
 </script>
@@ -18,7 +18,8 @@ const handleSubmit = (form: Event) => {
             <label for="mobilePhone">หมายเลขโทรศัพท์มือถือที่ใช้ลงทะเบียน ล่าสุด</label>
             <input type="text" id="mobilePhone" name="mobilePhone" class="input input-md input-bordered"
                 v-model="mobilePhone" />
-            <button class="btn btn-primary">ยืนยัน</button>
+            <button :disabled="isRequestedOTP" class="btn btn-primary">ยืนยัน</button>
         </form>
+        <otp-form v-if="isRequestedOTP" />
     </div>
 </template>
