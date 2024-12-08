@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { onMounted, ref } from 'vue';
 import { liff } from '@line/liff'
 
 const viewName = ref('default')
-const route = useRoute()
 
 
 onMounted(() => {
